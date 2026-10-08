@@ -206,6 +206,12 @@ def exactly(written: dict, keys: set[str], where: str) -> dict:
     return written
 
 
+def words_of(written: list, where: str) -> list[str]:
+    if not isinstance(written, list) or not all(isinstance(word, str) for word in written):
+        raise ValueError(f"{where}: every entry must be a string; quote words YAML reads as values")
+    return written
+
+
 def check_of(code: str, written: dict) -> Check:
     exactly(written, CHECK_KEYS, f"{code} check")
     check = Check(str(written["kind"]), str(written["bound"]), float(written["limit"]))
@@ -237,11 +243,19 @@ def language_of(code: str, written: dict) -> Language:
             (str(opening), str(closing)) for opening, closing in written["quote_pairs"]
         ),
         dialogue_quoted_share=float(written["dialogue_quoted_share"]),
-        abbreviations=frozenset(written["abbreviations"]),
-        initial_exceptions=frozenset(written["initial_exceptions"]),
-        non_subject_openers=frozenset(written["non_subject_openers"]),
-        non_subject_suffixes=tuple(written["non_subject_suffixes"]),
-        subject_despite_suffix=frozenset(written["subject_despite_suffix"]),
+        abbreviations=frozenset(words_of(written["abbreviations"], f"{code} abbreviations")),
+        initial_exceptions=frozenset(
+            words_of(written["initial_exceptions"], f"{code} initial_exceptions")
+        ),
+        non_subject_openers=frozenset(
+            words_of(written["non_subject_openers"], f"{code} non_subject_openers")
+        ),
+        non_subject_suffixes=tuple(
+            words_of(written["non_subject_suffixes"], f"{code} non_subject_suffixes")
+        ),
+        subject_despite_suffix=frozenset(
+            words_of(written["subject_despite_suffix"], f"{code} subject_despite_suffix")
+        ),
     )
 
 

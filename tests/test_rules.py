@@ -28,6 +28,9 @@ def test_the_rules_as_shipped_load() -> None:
         pytest.param(lambda rules: rules["thresholds"].update(long=30), id="unknown threshold"),
         pytest.param(lambda rules: rules["checks"][0].update(kind="spreed"), id="unknown check"),
         pytest.param(lambda rules: rules["checks"][0].update(bound="least"), id="unknown bound"),
+        pytest.param(
+            lambda rules: rules["non_subject_openers"].append(True), id="a word read as a value"
+        ),
     ],
 )
 def test_rules_a_port_would_refuse_are_refused(

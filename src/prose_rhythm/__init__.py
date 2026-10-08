@@ -15,7 +15,7 @@ from .measure import (
 from .norms import MAX, MIN, UnknownLanguage, Unreadable
 from .text import Sentence
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "LONG_SENTENCES",

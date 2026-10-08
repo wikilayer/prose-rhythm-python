@@ -7,6 +7,19 @@ promise the same counts on those cases.
 
 The package remains below 1.0 while its public API is settling.
 
+## 0.3.0 - 2026-10-08
+
+### Fixed
+
+- The words *on* and *off* open a sentence that does not start with its
+  subject. YAML 1.1 read them as booleans, so they never matched; they are
+  quoted now, and rules whose word lists hold anything but strings are refused.
+  The recorded counts of five reference novels drop by a few sentences in runs.
+
+### Added
+
+- `corpus/openings.yaml` gained sentences opening with *On* and *Off*.
+
 ## 0.2.0 - 2026-10-08
 
 The first public release.

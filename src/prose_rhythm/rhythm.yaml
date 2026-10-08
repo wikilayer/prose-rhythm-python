@@ -132,9 +132,9 @@ languages:
       - nor
       - now
       - of
-      - off
+      - "off"
       - often
-      - on
+      - "on"
       - once
       - onto
       - or

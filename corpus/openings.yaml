@@ -9,6 +9,8 @@ cases:
   - {sentence: İnce left early., subject_first: true}
   - {sentence: "İf the cart came, she left.", subject_first: false}
   - {sentence: Under the eave she waited., subject_first: false}
+  - {sentence: On the colonnade he gripped her arm., subject_first: false}
+  - {sentence: Off the road the grass grew tall., subject_first: false}
   - {sentence: "Holding the bag, she stood.", subject_first: false}
   - {sentence: Slowly the door gave., subject_first: false}
   - {sentence: "When the cart passed, she looked up.", subject_first: false}

@@ -11,15 +11,16 @@ to fifteen words, opens with its subject and sits in a paragraph of four or
 five such sentences reads as stamped out, and that evenness is one of the
 plainest signs of machine-written prose.
 
-This is the leading port: other ports read the same rules and answer the same
-test cases, and matching major and minor versions promise the same counts.
+This is the leading port. The [Go port](https://github.com/wikilayer/prose-rhythm)
+reads the same rules and answers the same test cases; matching major and minor
+versions promise the same counts.
 
 ## Installing
 
 Requires Python 3.11 or newer.
 
 ```sh
-python -m pip install git+https://github.com/wikilayer/prose-rhythm-python.git@v0.2.0
+python -m pip install git+https://github.com/wikilayer/prose-rhythm-python.git@v0.3.0
 ```
 
 ## Using
