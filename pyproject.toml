@@ -1,0 +1,44 @@
+[project]
+name = "prose-rhythm"
+dynamic = ["version"]
+description = "Measures sentence rhythm in prose: length variation, sentence openings, paragraph shape"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+prose-rhythm = "prose_rhythm.cli:main"
+
+[project.urls]
+Documentation = "https://wikilayer.github.io/prose-rhythm-python/prose_rhythm.html"
+Issues = "https://github.com/wikilayer/prose-rhythm-python/issues"
+Repository = "https://github.com/wikilayer/prose-rhythm-python"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/prose_rhythm/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+exclude = ["AGENTS.md", ".github", ".commentcensor.yaml", "data", "build"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/prose_rhythm"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+extend-select = ["ANN"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["E402"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--ignore=tests/novels"

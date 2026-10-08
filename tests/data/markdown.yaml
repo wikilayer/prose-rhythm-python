@@ -1,0 +1,53 @@
+cases:
+  - name: paragraphs are placed by the line they start on
+    source: "# A\n\nOne here.\n\nTwo here.\nStill two.\n"
+    paragraphs:
+      - [3, One here.]
+      - [5, Two here. Still two.]
+
+  - name: headings are not narration
+    source: "It was night.\n## Next\nMorning came.\n\nTitle\n=====\n\nIt was day.\n"
+    paragraphs:
+      - [1, It was night.]
+      - [3, Morning came.]
+      - [8, It was day.]
+
+  - name: a line in capitals is a heading
+    source: "CHAPTER I\n\nIt was night.\n"
+    paragraphs:
+      - [3, It was night.]
+
+  - name: windows line endings read like unix ones
+    source: "# Title\r\n\r\nIt was night.\r\nStill night.\r\n"
+    paragraphs:
+      - [3, It was night. Still night.]
+
+  - name: front matter is not narration and keeps line numbers
+    source: "---\ntitle: One\n---\nIt was night.\n"
+    paragraphs:
+      - [4, It was night.]
+
+  - name: code is not narration
+    source: "~~~\nCode here.\n~~~\n\n    indented code.\n\nIt was night.\n"
+    paragraphs:
+      - [7, It was night.]
+
+  - name: comments, quotes, lists and tables are not narration
+    source: "<!-- block:1 -->\n> A quoted line.\n\n- a list item.\n\n1. another one.\n\n| a | b |\n|---|---|\n| c | d |\n\nIt was night.\n"
+    paragraphs:
+      - [12, It was night.]
+
+  - name: a bracketed line and a scene break are not narration
+    source: "[Illustration: a ship]\n\n*       *       *\n\nIt was night.\n"
+    paragraphs:
+      - [5, It was night.]
+
+  - name: inline marks leave their words behind
+    source: "She read *the note* and _the letter_, then [the map](page:12) by `lamp` light<br>.\n"
+    paragraphs:
+      - [1, "She read the note and the letter, then the map by light."]
+
+  - name: a gutenberg header and licence are dropped
+    source: "The Project Gutenberg eBook\n*** START OF THE PROJECT GUTENBERG EBOOK X ***\n\nIt was night.\n\n*** END OF THE PROJECT GUTENBERG EBOOK X ***\nLicence text here.\n"
+    paragraphs:
+      - [4, It was night.]
