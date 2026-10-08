@@ -106,6 +106,17 @@ python tools/prose.py chapter.md | prose-rhythm - --places
 
 `-` in place of the file reads the source from stdin.
 
+For agents that pipe Markdown in and treat any non-zero exit as a failure,
+`make link-markdown` puts a one-step wrapper on the path:
+
+```sh
+prose-rhythm-md chapter.md
+cat chapter.md | prose-rhythm-md
+```
+
+It prints the same report with places and exits 0 when the rhythm has findings,
+2 when the text cannot be judged.
+
 ## Shared rules and cases
 
 [`rhythm.yaml`](https://github.com/wikilayer/prose-rhythm-python/blob/main/src/prose_rhythm/rhythm.yaml)

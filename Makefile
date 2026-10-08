@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := build
 
-.PHONY: install install-tools format comments lint test-build test docs build data measure sync-corpus
+.PHONY: install install-tools link-markdown format comments lint test-build test docs build data measure sync-corpus
 
 PORTS := ../prose-rhythm
 SHARED := corpus/sentences.yaml corpus/openings.yaml corpus/dialogue.yaml corpus/tallies.yaml corpus/novels.yaml
@@ -11,6 +11,10 @@ install:
 
 install-tools:
 	python -m pip install --upgrade git+https://github.com/botforge-pro/commentcensor.git
+
+link-markdown:
+	mkdir -p $(HOME)/.local/bin
+	ln -sf $(CURDIR)/tools/prose-rhythm-md $(HOME)/.local/bin/prose-rhythm-md
 
 format:
 	python -m ruff check --fix src tests tools

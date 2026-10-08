@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+here="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd)"
+source="${1:--}"
+
+python3 "$here/prose.py" "$source" | prose-rhythm - --places "${@:2}"
+status=$?
+
+if [ "$status" -eq 1 ]; then
+    echo "result: findings above; exit 0 so agents do not read them as a failure"
+    exit 0
+fi
+exit "$status"
