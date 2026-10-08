@@ -16,10 +16,13 @@ SKIPPED_INLINE = ("code_inline", "image", "html_inline")
 
 def main(argv: list[str]) -> int:
     if len(argv) != 1:
-        print("usage: prose.py FILE  (Markdown or a Project Gutenberg text)", file=sys.stderr)
+        print("usage: prose.py FILE|-  (Markdown or a Project Gutenberg text)", file=sys.stderr)
         return 2
     try:
-        source = Path(argv[0]).read_text(encoding=ENCODING)
+        if argv[0] == "-":
+            source = sys.stdin.buffer.read().decode(ENCODING)
+        else:
+            source = Path(argv[0]).read_text(encoding=ENCODING)
     except (OSError, UnicodeDecodeError) as failure:
         print(f"{argv[0]}: {failure}", file=sys.stderr)
         return 2

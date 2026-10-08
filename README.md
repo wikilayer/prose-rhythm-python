@@ -104,6 +104,8 @@ into the original file:
 python tools/prose.py chapter.md | prose-rhythm - --places
 ```
 
+`-` in place of the file reads the source from stdin.
+
 ## Shared rules and cases
 
 [`rhythm.yaml`](https://github.com/wikilayer/prose-rhythm-python/blob/main/src/prose_rhythm/rhythm.yaml)
