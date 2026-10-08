@@ -3,6 +3,7 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from . import __version__
 from .measure import (
     ENGLISH,
     LONG_SENTENCES,
@@ -175,6 +176,7 @@ def parser() -> argparse.ArgumentParser:
         "in prose, and report where the rhythm goes flat. Input is plain text with "
         "paragraphs separated by blank lines.",
     )
+    built.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     built.add_argument("paths", nargs="+", help="UTF-8 plain text files, or - for stdin")
     built.add_argument(
         "--language",

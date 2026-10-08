@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from prose_rhythm import __version__
 from prose_rhythm.cli import CLEAN, FOUND, UNUSABLE, main
 
 FLAT_PARAGRAPH = (
@@ -58,6 +59,12 @@ def test_stdin_is_read_as_utf8(monkeypatch: pytest.MonkeyPatch) -> None:
 def test_stdin_twice_is_unusable(monkeypatch: pytest.MonkeyPatch) -> None:
     piped(monkeypatch, VARIED.encode("utf-8"))
     assert main(["-", "-"]) == UNUSABLE
+
+
+def test_version_names_the_package_version(capsys: pytest.CaptureFixture[str]) -> None:
+    with pytest.raises(SystemExit):
+        main(["--version"])
+    assert capsys.readouterr().out.strip() == f"prose-rhythm {__version__}"
 
 
 def test_an_unknown_language_is_unusable(tmp_path: Path) -> None:
