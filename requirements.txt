@@ -2,5 +2,5 @@ PyYAML==6.0.3
 build==1.6.1
 markdown-it-py==4.2.0
 pdoc==16.0.0
-pytest==9.1.1
+pytest==9.2.0
 ruff==0.17.2
